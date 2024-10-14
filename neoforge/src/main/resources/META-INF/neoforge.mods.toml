@@ -1,0 +1,52 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+issueTrackerURL = "https://github.com/frikinjay/mob-stacker/issues"
+license = "GNU LGPL 3.0"
+
+[[mods]]
+modId = "mobstacker"
+version = "${version}"
+displayName = "MobStacker"
+authors = "frikinjay"
+description = '''
+Greatly increases performance by stacking mobs together.
+'''
+logoFile = "mobstacker.png"
+
+[[dependencies.mobstacker]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "SERVER"
+
+[[dependencies.mobstacker]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "SERVER"
+
+[[dependencies.mobstacker]]
+modId = "almanac"
+type = "required"
+versionRange = "[1.0.2,)"
+ordering = "AFTER"
+side = "SERVER"
+
+[[dependencies.mobstacker]]
+modId = "letmedespawn"
+type = "required"
+versionRange = "[1.4.4,)"
+ordering = "AFTER"
+side = "SERVER"
+
+
+[[mixins]]
+config = "mobstacker.mixins.json"
+
+[[mixins]]
+config = "mobstacker-neoforge.mixins.json"
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"

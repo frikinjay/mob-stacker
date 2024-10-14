@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.frikinjay.mobstacker.fabric.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "mobs.MushroomCowMixin",
+    "mobs.SheepMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "mobstacker",
+  "version": "${version}",
+  "name": "MobStacker",
+  "description": "Greatly increases performance by stacking mobs together.",
+  "authors": [
+    "frikinjay"
+  ],
+  "contact": {
+    "homepage": "https://github.com/frikinjay/mob-stacker"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/mobstacker/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.frikinjay.mobstacker.fabric.MobStackerFabric"
+    ],
+    "client": [
+    ]
+  },
+  "mixins": [
+    "mobstacker.mixins.json",
+    "mobstacker-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.7",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "almanac": ">=1.0.2",
+    "letmedespawn": ">=1.4.4"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

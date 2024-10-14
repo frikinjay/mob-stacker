@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.frikinjay.mobstacker.neoforge.mixin",
+  "plugin": "com.frikinjay.mobstacker.neoforge.util.ConditionalLoaderMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "mobs.MushroomCowMixin",
+    "industrialforegoing.MobImprisonmentToolItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

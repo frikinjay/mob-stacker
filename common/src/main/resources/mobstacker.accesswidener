@@ -1,0 +1,8 @@
+accessWidener v2 named
+
+accessible method net/minecraft/world/entity/LivingEntity dropAllDeathLoot (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V
+accessible field net/minecraft/world/entity/Entity DATA_CUSTOM_NAME Lnet/minecraft/network/syncher/EntityDataAccessor;
+accessible field net/minecraft/world/entity/LivingEntity deathScore I
+accessible method net/minecraft/world/entity/LivingEntity createWitherRose (Lnet/minecraft/world/entity/LivingEntity;)V
+accessible method net/minecraft/resources/ResourceLocation <init> (Ljava/lang/String;Ljava/lang/String;)V
+accessible field net/minecraft/world/entity/LivingEntity LOGGER Lorg/slf4j/Logger;
