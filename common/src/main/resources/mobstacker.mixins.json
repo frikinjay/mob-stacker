@@ -8,7 +8,9 @@
   "mixins": [
     "EntityDataMixin",
     "EntityMixin",
+    "LivingEntityCustomNameMixin",
     "LivingEntityMixin",
+    "MobCategoryMixin",
     "MobMixin",
     "PlayerMixin",
     "ServerEntityMixin",

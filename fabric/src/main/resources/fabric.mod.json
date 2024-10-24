@@ -3,6 +3,7 @@
   "id": "mobstacker",
   "version": "${version}",
   "name": "MobStacker",
+  "accessWidener": "mobstacker.accesswidener",
   "description": "Greatly increases performance by stacking mobs together.",
   "authors": [
     "frikinjay"

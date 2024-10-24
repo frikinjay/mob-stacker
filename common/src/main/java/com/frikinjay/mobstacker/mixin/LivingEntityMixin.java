@@ -1,6 +1,5 @@
 package com.frikinjay.mobstacker.mixin;
 
-import com.frikinjay.almanac.Almanac;
 import com.frikinjay.mobstacker.MobStacker;
 import com.frikinjay.mobstacker.api.MobStackerAPI;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
@@ -36,7 +34,7 @@ public abstract class LivingEntityMixin extends Entity {
         mobstacker$thisEntity = (LivingEntity) (Object) this;
         if (!mobstacker$thisEntity.level().isClientSide && mobstacker$thisEntity instanceof Mob) {
             mobstacker$self = (Mob) mobstacker$thisEntity;
-            if (MobStacker.canStack(mobstacker$self)) {
+            if (MobStacker.getCanStack(mobstacker$self) && MobStacker.canStack(mobstacker$self)) {
                 mobstacker$self.level().getEntities(mobstacker$self, mobstacker$self.getBoundingBox().inflate(MobStacker.getStackRadius()),
                                 e -> e instanceof Mob && MobStacker.canStack((Mob) e))
                         .stream()
@@ -54,12 +52,6 @@ public abstract class LivingEntityMixin extends Entity {
             mobstacker$self = (Mob) mobstacker$thisEntity;
             MobStacker.setStackSize(mobstacker$self, 1);
         }
-    }
-
-    @Redirect(method = "die(Lnet/minecraft/world/damagesource/DamageSource;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasCustomName()Z"))
-    private boolean mobstacker$replaceHasCustomName(LivingEntity instance) {
-        return !Almanac.hasNonCustomName(instance);
     }
 
     @Inject(method = "remove", at = @At("HEAD"))
@@ -125,6 +117,9 @@ public abstract class LivingEntityMixin extends Entity {
             mobstacker$self = (Mob) mobstacker$thisEntity;
             if (MobStacker.getStackSize(mobstacker$self) == 1) {
                 MobStacker.setStackSize(mobstacker$self, 1);
+            }
+            if (MobStacker.getCanStack(mobstacker$self)) {
+                MobStacker.setCanStack(mobstacker$self, true);
             }
         }
     }

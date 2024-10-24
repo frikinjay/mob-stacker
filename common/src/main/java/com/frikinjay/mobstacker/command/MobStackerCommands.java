@@ -19,20 +19,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobCategory;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
+import static com.frikinjay.mobstacker.MobStacker.MOD_ID;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 public class MobStackerCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(literal("mobstacker")
+        dispatcher.register(literal(MOD_ID)
                 .requires(source -> source.hasPermission(2))
-                .then(literal("config")
+                .then(literal("stackerConfig")
                         .then(literal("killWholeStackOnDeath")
                                 .then(argument("value", BoolArgumentType.bool())
                                         .executes(MobStackerCommands::setKillWholeStackOnDeath)))
@@ -56,6 +56,28 @@ public class MobStackerCommands {
                                         .then(argument("item", StringArgumentType.greedyString())
                                                 .suggests(MobStackerCommands::suggestItems)
                                                 .executes(MobStackerCommands::setSeparatorItem)))))
+                .then(literal("mobCapConfig")
+                        .then(literal("monsterMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setMonsterMobCap)))
+                        .then(literal("creatureMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setCreatureMobCap)))
+                        .then(literal("ambientMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setAmbientMobCap)))
+                        .then(literal("axolotlsMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setAxolotlsMobCap)))
+                        .then(literal("undergroundWaterCreatureMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setUndergroundWaterCreatureMobCap)))
+                        .then(literal("waterCreatureMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setWaterCreatureMobCap)))
+                        .then(literal("waterAmbientMobCap")
+                                .then(argument("value", IntegerArgumentType.integer(0,128))
+                                        .executes(MobStackerCommands::setWaterAmbientMobCap))))
                 .then(literal("ignore")
                         .then(literal("entity")
                                 .then(argument("entityId", ResourceLocationArgument.id())
@@ -290,6 +312,85 @@ public class MobStackerCommands {
             }
         } else {
             context.getSource().sendFailure(Component.literal("Invalid item: " + itemString).withStyle(ChatFormatting.RED));
+        }
+        return 1;
+    }
+
+    // Mob Cap
+
+    private static int setMonsterMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getMonsterMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Monster mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setMonsterMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Monster mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setCreatureMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getCreatureMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Creature mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setCreatureMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Creature mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setAmbientMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getAmbientMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Ambient mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setAmbientMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Ambient mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setAxolotlsMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getAxolotlsMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Axolotls mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setAxolotlsMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Axolotls mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setUndergroundWaterCreatureMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getUndergroundWaterCreatureMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Underground water creature mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setUndergroundWaterCreatureMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Underground water creature mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setWaterCreatureMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getWaterCreatureMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Water creature mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setWaterCreatureMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Water creature mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
+        }
+        return 1;
+    }
+
+    private static int setWaterAmbientMobCap(CommandContext<CommandSourceStack> context) {
+        int newValue = IntegerArgumentType.getInteger(context, "value");
+        if (MobStacker.config.getWaterAmbientMobCap() == newValue) {
+            context.getSource().sendSuccess(() -> Component.literal("Water ambient mob cap is already set to " + newValue).withStyle(ChatFormatting.RED), false);
+        } else {
+            MobStacker.config.setWaterAmbientMobCap(newValue);
+            context.getSource().sendSuccess(() -> Component.literal("Water ambient mob cap has been set to " + newValue).withStyle(ChatFormatting.AQUA), true);
         }
         return 1;
     }
