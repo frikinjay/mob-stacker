@@ -1,12 +1,12 @@
-![alt An entity stacked to almost maximum integer limit](https://media.forgecdn.net/attachments/988/553/mobstacker-1.png)
 <center>
+<img src="[https://i.ibb.co/hf7t4tz/req-al-mr-335x130.png](https://media.forgecdn.net/attachments/988/553/mobstacker-1.png)" alt="An entity stacked to almost maximum integer limit">
 <a href="https://modrinth.com/mod/almanac-lib">
 <img src="https://i.ibb.co/hf7t4tz/req-al-mr-335x130.png" alt="Requires Almanac">
 </a>
 <a href="https://modrinth.com/mod/lmd">
 <img src="https://i.ibb.co/HVg2LR9/req-lmd-mr-335x130.png" alt="Requires Let Me Despawn">
 </a>
-<a href="https://discord.gg/aPPEPJWG39" rel="nofollow">
+<a href="https://discord.gg/aPPEPJWG39">
 <img src="https://i.ibb.co/GFT3JFP/req-discord-130x130.png" alt="Discord Server Invite Link">
 </a>
 </center>
